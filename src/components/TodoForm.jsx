@@ -18,7 +18,7 @@ function TodoForm() {
       setError("you must be logged in");
       return;
     }
-    const response = await fetch("/api/todos/", {
+    const response = await fetch("https://merntodobackend.vercel.app/api/todos/", {
       method: "POST",
       body: JSON.stringify(todo),
       headers: {

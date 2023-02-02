@@ -8,7 +8,7 @@ function Home() {
   const { user } = useAuthContext();
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch("/api/todos/", {
+      const response = await fetch("https://merntodobackend.vercel.app/api/todos/", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
 

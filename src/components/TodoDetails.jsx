@@ -10,7 +10,7 @@ function TodoDetails({ todo }) {
     if (!user) {
       return;
     }
-    const response = await fetch("/api/todos/" + todo._id, {
+    const response = await fetch("https://merntodobackend.vercel.app/api/todos/" + todo._id, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${user.token}` },
     });
