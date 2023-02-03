@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 
-const Signup = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
@@ -31,10 +31,10 @@ const Signup = () => {
         value={password}
       />
 
-      <button disabled={isLoading}>Sign up</button>
+      <button disabled={isLoading}>Login</button>
       {error && <div className="error">{error}</div>}
     </form>
   );
 };
 
-export default Signup;
+export default Login;

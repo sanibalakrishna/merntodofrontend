@@ -10,7 +10,7 @@ function Navbar() {
     logout();
   };
   return (
-    <header>
+    <header className="headercontainer">
       <div className="container">
         <Link to="/">
           <h1>Todo Buddy</h1>
@@ -19,7 +19,7 @@ function Navbar() {
       <nav>
         {user && (
           <div>
-            <span>{user.email}</span>
+            <span>{user.name}</span>
             <button onClick={handleClick}>Logout</button>
           </div>
         )}

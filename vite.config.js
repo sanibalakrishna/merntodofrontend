@@ -4,13 +4,13 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    // proxy: {
-    //   "/api": "https://merntodobackend.vercel.app/",
-    // },
-    // "/api/user": {
-    //   target: "https://merntodobackend.vercel.app/",
-    //   pathRewrite: { "^/api/user": "/api" },
-    // },
+    proxy: {
+      "/api": "http://localhost:5000/",
+    },
+    "/api/user": {
+      target: "http://localhost:5000/",
+      pathRewrite: { "^/api/user": "/api" },
+    },
   },
   plugins: [react()],
 });

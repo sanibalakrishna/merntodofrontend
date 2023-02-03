@@ -5,6 +5,9 @@
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  --high:#F7A4A4;
+  --medimum:#FEBE8C;
+  --low:#B6E2A1;
 }
 body {
   background: #f1f1f1;
@@ -13,14 +16,16 @@ body {
 }
 header {
   background: #fff;
+  display: flex;
+  justify-content:space-between;
+  padding: 0% 3%;
 }
 header .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px 20px;
+ 
+  
   display: flex;
   align-items: center;
-  justify-content: space-between;
+ 
 }
 header a {
   color: #333;
@@ -43,6 +48,8 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .todo-details h4 {
@@ -79,7 +86,7 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
-form button {
+.submitbtn {
   background: var(--primary);
   border: 0;
   color: #fff;
@@ -102,9 +109,11 @@ input.error {
 nav {
   display: flex;
   align-items: center;
+  margin-left: 20px;
+
 }
-nav a {
-  margin-left: 10px;
+nav a{
+  margin-left: 20px;
 }
 
 nav button {
@@ -127,4 +136,75 @@ form.login {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+
+}
+.create{
+  background: #F1F1F1;
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+  padding: 5% 5%;
+}
+
+.priority{
+ display: flex;
+ gap: 10px;
+
+}
+.priority button{
+ 
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 30%;
+  padding: 3%;
+  cursor: pointer;
+  border-radius: 4px;
+  /* border: 2px solid #ddd; */
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 15px;
+  font-weight: lighter;
+
+}
+.high{
+  border-radius: 4px;
+  border: 2px solid var(--high);
+  background-color: var(--high);
+  color:#fff;
+}
+.medium{
+  border-radius: 4px;
+  border: 2px solid var(--medimum);
+  background-color: var(--medimum);
+  color:#fff;
+}
+.low{
+  border-radius: 4px;
+  border: 2px solid var(--low);
+  background-color: var(--low);
+  color:#fff;
+}
+
+.highactived{
+  border: 2px solid var(--high);
+}
+.updateinput{
+  width: 150%;
+}
+.updatepriority{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.setpriority{
+  display: flex;
+  gap:10%;
+}
+.todoside{
+  display: flex;
+  gap: 10px;
+}
+.todoside button{
+  height: 40%;
+  background-color: transparent;
+  border-color: transparent;
 }

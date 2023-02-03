@@ -3,15 +3,18 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useTodoContext } from "../hooks/useTodoContext";
 
 function TodoForm() {
+
   const { dispatch } = useTodoContext();
-  const [todo, setTodo] = useState({ taskname: "", priority: "" });
+  const [taskname, setTaskName] = useState("");
+  const [priority, setPriority] = useState("");
   const [error, setError] = useState("");
   const [emptyfields, setEmptyfields] = useState([]);
-  const { taskname, priority } = todo;
+
   const { user } = useAuthContext();
   const onChange = (e) => {
-    setTodo((prevstate) => ({ ...prevstate, [e.target.id]: e.target.value }));
+    setTaskName(e.target.value);
   };
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
@@ -20,7 +23,7 @@ function TodoForm() {
     }
     const response = await fetch("https://merntodobackend.vercel.app/api/todos/", {
       method: "POST",
-      body: JSON.stringify(todo),
+      body: JSON.stringify({taskname,priority}),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -31,16 +34,20 @@ function TodoForm() {
       setError(json.message);
       setError(json.fields);
     }
+
     if (response.ok) {
-      setTodo({ taskname: "", priority: "" });
+       setTaskName("");
+       setPriority("");
       setError(null);
       setEmptyfields([]);
       console.log("new task created");
       dispatch({ type: "CREATE_TODOS", payload: json });
+      console.log(json);
+     
     }
   };
   return (
-    <form className="create" onSubmit={handleSubmit}>
+    <div className="create" >
       <h3>Add a new task</h3>
       <label>task name</label>
       <input
@@ -52,17 +59,14 @@ function TodoForm() {
       />
 
       <label>Priority</label>
-      <input
-        type="text"
-        value={priority}
-        id="priority"
-        onChange={onChange}
-        className={emptyfields.includes("priority") ? "error" : ""}
-      />
-
-      <button>Add Task</button>
+      <div className="priority">
+        <button className={(priority=="high")&&"high"} onClick={()=>setPriority("high")}>High</button>
+        <button className={(priority=="medium")&&"medium"} onClick={()=>setPriority("medium")}>Medium</button>
+        <button className={(priority=="low")&&"low"} onClick={()=>setPriority("low")}>Low</button>
+      </div>
+      <button onClick={handleSubmit} className="submitbtn">Add Task</button>
       {error && <div className="error">{error}</div>}
-    </form>
+    </div>
   );
 }
 
